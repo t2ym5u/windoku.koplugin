@@ -1,18 +1,46 @@
-# Windoku
+# windoku.koplugin
 
-> **Status: stub — not yet implemented**
+A Windoku (Windows Sudoku) plugin for [KOReader](https://github.com/koreader/koreader).
 
-## Description
+## Screenshot
 
-Sudoku variant where four 3×3 'window' regions overlap the grid. Each window must also contain 1–9. Also known as NRC Sudoku.
+*(Screenshot to be added.)*
 
-## Files to create
+## Rules
 
-- `board.lua` — game logic, puzzle generator, serialize/load
-- `board_widget.lua` — grid rendering and tap gestures
-- `screen.lua` — full-screen layout (buttons + board)
-- `main.lua` — PluginBase entry point
+Standard 9×9 Sudoku rules plus four extra "window" 3×3 regions (one highlighted in each quadrant of the grid) that must also each contain every digit 1–9 exactly once.
 
-## Notes
+## Features
 
-Shares rules with sudoku.koplugin; extend SudokuBoard base or copy and add variant constraints.
+- **Three difficulty levels** — Easy, Medium, Hard
+- **Window shading** — the four extra regions are visually highlighted
+- **Note mode** — pencil in candidate digits
+- **Check** — highlights incorrect cells
+- **Reveal solution** — shows the full solution
+- **Undo** — step back through your moves
+- **Auto-save** — game state saved and restored on next launch
+
+## Installation
+
+1. Download `windoku.koplugin.zip` from the [latest release](../../releases/latest).
+2. Extract into the `plugins/` folder of your KOReader data directory.
+3. Restart KOReader.
+4. Open the menu → **Tools** → **Windoku**.
+
+## Controls
+
+| Action | How |
+|--------|-----|
+| Select a cell | Tap it |
+| Enter a digit | Tap the digit button |
+| Erase a cell | Tap **Erase** |
+| Toggle note mode | Tap **Note: Off / On** |
+| Undo last move | Tap **Undo** |
+| Check progress | Tap **Check** |
+| New game | Tap **New game** |
+| Change difficulty | Tap **Diff** |
+| Show rules | Tap **Rules** |
+
+## License
+
+GPL-3.0 — see [LICENSE](LICENSE).
