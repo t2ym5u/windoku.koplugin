@@ -29,6 +29,20 @@ local WINDOW_REGIONS = {
     { row_start = 6, row_end = 8, col_start = 6, col_end = 8 },
 }
 
+-- puzzle_generator's extra_regions param wants a list of cell-lists
+-- ({r=,c=} per cell), not the {row_start,row_end,col_start,col_end}
+-- rectangle shape used elsewhere in this file for conflict-checking.
+local EXTRA_REGIONS = {}
+for _, region in ipairs(WINDOW_REGIONS) do
+    local cells = {}
+    for r = region.row_start, region.row_end do
+        for c = region.col_start, region.col_end do
+            cells[#cells + 1] = { r = r, c = c }
+        end
+    end
+    EXTRA_REGIONS[#EXTRA_REGIONS + 1] = cells
+end
+
 local WindokuBoard = setmetatable({}, { __index = BaseBoard })
 WindokuBoard.__index = WindokuBoard
 
@@ -135,8 +149,8 @@ end
 function WindokuBoard:generate(difficulty)
     self.difficulty = difficulty or self.difficulty or DEFAULT_DIFFICULTY
     local n, box_rows, box_cols = self.n, self.box_rows, self.box_cols
-    local solution = generateSolvedBoard(n, box_rows, box_cols)
-    local puzzle   = createPuzzle(solution, self.difficulty, n, box_rows, box_cols)
+    local solution = generateSolvedBoard(n, box_rows, box_cols, EXTRA_REGIONS)
+    local puzzle   = createPuzzle(solution, self.difficulty, n, box_rows, box_cols, EXTRA_REGIONS)
     self.puzzle          = puzzle
     self.solution        = solution
     self.user            = emptyGrid(n)
