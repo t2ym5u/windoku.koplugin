@@ -146,11 +146,11 @@ function WindokuBoard:load(state)
     return true
 end
 
-function WindokuBoard:generate(difficulty)
+function WindokuBoard:generate(difficulty, on_progress)
     self.difficulty = difficulty or self.difficulty or DEFAULT_DIFFICULTY
     local n, box_rows, box_cols = self.n, self.box_rows, self.box_cols
     local solution = generateSolvedBoard(n, box_rows, box_cols, EXTRA_REGIONS)
-    local puzzle   = createPuzzle(solution, self.difficulty, n, box_rows, box_cols, EXTRA_REGIONS)
+    local puzzle   = createPuzzle(solution, self.difficulty, n, box_rows, box_cols, EXTRA_REGIONS, on_progress)
     self.puzzle          = puzzle
     self.solution        = solution
     self.user            = emptyGrid(n)
