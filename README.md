@@ -4,7 +4,7 @@ A Windoku (Windows Sudoku) plugin for [KOReader](https://github.com/koreader/kor
 
 ## Screenshot
 
-*(Screenshot to be added.)*
+![Screenshot](images/windoku.png)
 
 ## Rules
 
