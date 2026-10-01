@@ -2,5 +2,5 @@ local _ = require("gettext")
 return {
     fullname    = _("Windoku"),
     description = _("Sudoku with 4 windowed inner regions"),
-    version     = "1.2.2",
+    version     = "1.3.0",
 }
