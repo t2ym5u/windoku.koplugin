@@ -54,7 +54,19 @@ function Windoku:init()
     self.ui.menu:registerToMainMenu(self)
 end
 
+-- Listed under Tools → Games with the rest of the fleet. games_menu comes
+-- from game-common, which this plugin does not ship: any other game's
+-- common/ provides it. Installed on its own, the game keeps its own entry.
 function Windoku:addToMainMenu(menu_items)
+    local ok, GamesMenu = pcall(require, "games_menu")
+    if ok and type(GamesMenu) == "table" and GamesMenu.add then
+        GamesMenu.add(menu_items, {
+            id     = "windoku",
+            label  = _("Windoku"),
+            launch = function() self:showGame() end,
+        })
+        return
+    end
     menu_items.windoku = {
         text         = _("Windoku"),
         sorting_hint = "tools",
