@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.6.0] - 2026-11-04
+
+### Changed
+- New games are generated up to ten times faster: building the solution grid
+  with its four windows used to backtrack cell by cell, 80% of the time, and
+  could not show any progress meanwhile. Worst case on a desktop: Expert
+  425 → 43 ms, Easy to Hard 290 → 11 ms (on a Kobo, about 1 s instead of
+  10 s for Expert).
+- Puzzles for a given seed differ from 1.5.0 (the grid is built differently);
+  they are still deducible without guessing, at the same difficulty.
+- Shared sudoku-common 1.6.0: the deduction check behind every clue the
+  generator digs out runs about twice as fast, with exactly the same
+  deductions, so a given seed still deals the same puzzle.
+
 ## [1.5.0] - 2026-11-02
 
 ### Changed
